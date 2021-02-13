@@ -1,0 +1,47 @@
+# Site settings
+title: Jenny Sharps
+url: "https://www.jennysharps.com"
+name: Jenny Sharps
+email: jennylynnsharps@gmail.com
+formspree_url: https://formspree.io/f/mgepbery
+description: >-
+  Jenny Sharps is a full stack Senior Software Engineer.  She is currently based in London,
+  UK, and is working as a consultant for Red Badger. Her experience over the last 9 years
+  runs the gamut from startup to Big 5 consultancy across sectors as diverse as food
+  services, financial services, eCommerce, and media
+canonical_url: https://jennysharps.com
+keywords: "Senior Software Engineer, Full stack, Rust, Golang, React, DevOps, K8s, Agile, Pair Programming"
+skills: "Senior Software Engineer"
+
+# Social networks usernames: google-plus, flickr, dribbble, pinterest, instagram, tumblr, linkedin
+social:
+  - title: linkedin
+    url: https://www.linkedin.com/in/jennylynnsharps/
+  - title: github
+    url: https://github.com/jennysharps
+    
+# Google webmaster tools
+google_verify:
+
+# https://ssl.bing.com/webmaster/configure/verify/ownership Option 2 content= goes here
+bing_verify:
+
+# Color settings (hex-codes without the leading hash-tag)
+color:
+  primary: A585E6
+  primary-dark: 9A76E4
+  primary-rgb: "142, 33, 243"
+  secondary: 2C3547
+  secondary-dark: 1B2436
+  section-tout: DEDBEC
+
+github:
+  - metadata
+
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+
+# Build settings
+markdown: kramdown
+permalink: pretty
