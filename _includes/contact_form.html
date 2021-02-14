@@ -1,3 +1,51 @@
+<script>
+jQuery(document).ready(function($) {
+    $('.disabled-no-js').removeAttr("disabled").removeClass("disabled-no-js");
+
+    $("#contact-form").validate({
+        submitHandler: function(form, e) {
+            e.preventDefault();
+            $('.submit-error').remove();
+
+			var formEl = $(form);
+            var formDataSerialized = formEl.serialize();
+
+			console.log(formDataSerialized);
+
+            var parentEl = formEl.parent();
+            var inputEls = formEl.find(':input');
+            var submitButtonEl = formEl.find("button[type=submit]");
+            var originalButtonText = submitButtonEl.text();
+            
+            submitButtonEl.text("Sending...");
+            inputEls.prop('disabled', true);
+            parentEl.addClass("submitting");
+
+            grecaptcha.ready(function() {
+                grecaptcha.execute('{{ site.recaptcha_site_key }}', { action: 'submit' }).then(function(token) {
+                    formDataSerialized += "&g-recaptcha-response=" + token;
+
+                    $.post("https://us-central1-paul-zinder.cloudfunctions.net/send-email-jenny-sharps", formDataSerialized)
+                        .done(function(data) {
+                            $(form).replaceWith('<div class="container"><p><strong>Your message was sent successfully.</strong></p><p>Thanks for getting in touch!</p></div>');
+                        })
+                        .fail(function (jqXHR, textStatus) {
+                            $(form).parent().prepend('<p class="submit-error error"><strong>Something went wrong! Please try again.</p>');
+                        })
+                        .always(function () {
+                            submitButtonEl.text(originalButtonText);
+                            inputEls.prop('disabled', false);
+                            parentEl.removeClass("submitting");
+                        });
+                });
+            });
+
+            return false;
+        }
+    });
+});
+</script>
+<!-- TODO: update validation error messages & form state styles -->
 <div class="container">
 	<div class="row">
 		<div class="col-lg-12 text-center">
@@ -7,37 +55,39 @@
 	</div>
 	<div class="row">
 		<div class="col-lg-8 col-lg-offset-2 form-container">
-			<form action="{{ site.formspree_url }}" method="POST" name="sentMessage" id="contactForm" novalidate>
+			<form action="#" method="post" id="contact-form" novalidate>
+				<noscript class="form-error-noscript">
+					Please enable JavaScript in your browser to complete this form.
+				</noscript>
+
 				<div class="row control-group">
 					<div class="form-group col-xs-12 floating-label-form-group controls">
 						<label>Name</label>
 						<p class="help-block text-danger"></p>
-						<input type="text" name="name" class="form-control" placeholder="Name" id="name" required data-validation-required-message="Please enter your name.">
+						<input type="text" name="name" class="form-control disabled-no-js" placeholder="Name" id="name" disabled required data-validation-required-message="Please enter your name.">
 					</div>
 				</div>
 				<div class="row control-group">
 					<div class="form-group col-xs-12 floating-label-form-group controls">
 						<label>Email Address</label>
 						<p class="help-block text-danger"></p>
-						<input type="email" name="_replyto" class="form-control" placeholder="Email Address" id="email" required data-validation-required-message="Please enter your email address.">
+						<input type="email" name="email" class="form-control disabled-no-js" placeholder="Email Address" id="email" disabled required data-validation-required-message="Please enter your email address.">
 					</div>
-				</div>
-				<div>
-					<input type="hidden"  name="_subject" value="New submission!">
-					<input type="text" name="_gotcha" style="display:none" />
 				</div>
 				<div class="row control-group">
 					<div class="form-group col-xs-12 floating-label-form-group controls">
 						<label>Message</label>
 						<p class="help-block text-danger"></p>
-						<textarea rows="5" name="message" class="form-control" placeholder="Message" id="message" required data-validation-required-message="Please enter a message."></textarea>
+						<textarea rows="5" name="message" class="form-control disabled-no-js" placeholder="Message" id="message" disabled required data-validation-required-message="Please enter a message."></textarea>
 					</div>
 				</div>
 				<br>
 				<div id="success"></div>
 				<div class="row">
 					<div class="form-group col-xs-12">
-						<button type="submit" class="btn btn-success btn-lg">Send</button>
+						<div class="form-submit-container">          
+							<button type="submit" disabled class="disabled-no-js btn btn-success btn-lg" aria-live="assertive">Send</button>
+						</div>
 					</div>
 				</div>
 			</form>

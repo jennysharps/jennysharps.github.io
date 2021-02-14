@@ -1,3 +1,9 @@
 ---
 layout: default
 ---
+{% include profile_header.html %}
+{% for section in site.data.sections.items %}
+    <section id="{{ section.id }}">
+        {% include {{ section.content_include }} %}
+    </section>
+{% endfor %}

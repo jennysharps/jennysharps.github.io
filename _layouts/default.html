@@ -24,6 +24,10 @@
       <link href="//fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
       <link href="//fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
 
+      <!-- jQuery Version 3.4.0 -->
+     <script src="{{ "js/jquery-3.4.0.min.js" | absolute_url }}"></script>
+     <script src="https://www.google.com/recaptcha/api.js?render={{ site.recaptcha_site_key }}"></script>
+
       <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
       <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
       <!--[if lt IE 9]>
@@ -32,65 +36,10 @@
       <![endif]-->
   </head>
   <body id="page-top" class="index">
-    <!-- Navigation -->
-    <nav class="navbar navbar-default navbar-fixed-top">
-       <div class="container">
-           <!-- Brand and toggle get grouped for better mobile display -->
-           <div class="navbar-header page-scroll">
-               <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                   <span class="sr-only">Toggle navigation</span>
-                   <span class="icon-bar"></span>
-                   <span class="icon-bar"></span>
-                   <span class="icon-bar"></span>
-               </button>
-               <a class="navbar-brand" href="#page-top">{{ site.name }}</a>
-               {% for network in site.social %}
-               <a href="{{ network.url }}" class="btn-social btn-outline"><i class="fa fa-fw fa-{{ network.title }}"></i></a>
-               {% endfor %}
-           </div>
-
-           <!-- Collect the nav links, forms, and other content for toggling -->
-           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-               <ul class="nav navbar-nav navbar-right">
-                   <li class="hidden">
-                       <a href="#page-top"></a>
-                   </li>
-                   <li class="page-scroll">
-                       <a href="#about">About Me</a>
-                   </li>
-                   <li class="page-scroll">
-                       <a href="#skills">Skills</a>
-                   </li>
-                   <li class="page-scroll">
-                       <a href="#contact">Contact</a>
-                   </li>
-               </ul>
-           </div>
-           <!-- /.navbar-collapse -->
-       </div>
-       <!-- /.container-fluid -->
-    </nav>
-    <!-- Header -->
-    <header>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="profile-img-container">
-                        <img class="profile-img" src="img/profile.png" alt="{{ site.name }}">
-                    </div>
-                    <div class="intro-text">
-                        <span class="name">{{ site.name }}</span>
-                        <hr>
-                        <span class="skills">{{ site.skills }}</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    {% include section.html content_include="about_me.html" id="about" %}
-    {% include section.html content_include="skills.html" id="skills" dark=true %}
-    {% include section.html content_include="contact_form.html" id="contact" %}
+    {% include navigation.html %}
+    <main>
+        {{ content }}
+    </main>
 
     <!-- Footer -->
     <footer class="text-center">
@@ -111,8 +60,6 @@
             <i class="fa fa-chevron-up"></i>
         </a>
     </div>
-    <!-- jQuery Version 1.11.0 -->
-     <script src="{{ "js/jquery-1.11.0.js" | absolute_url }}"></script>
 
      <!-- Bootstrap Core JavaScript -->
      <script src="{{ "js/bootstrap.min.js" | absolute_url  }}"></script>
@@ -123,21 +70,9 @@
      <script src="{{ "js/cbpAnimatedHeader.js" | absolute_url  }}"></script>
 
      <!-- Contact Form JavaScript -->
-     <script src="{{ "js/jqBootstrapValidation.js" | absolute_url  }}"></script>
-     <script src="{{ "js/contact_me_static.js" | absolute_url }}"></script>
+     <script src="{{ "js/jquery-3.4.0-validate.min.js" | absolute_url }}"></script>
 
      <!-- Custom Theme JavaScript -->
      <script src="{{ "js/freelancer.js" | absolute_url }}"></script>
-
-     <script type="text/javascript">
-        (function(l) {
-            // Redirect to homepage if a differet url is accessed as this is a single page app
-            // and only the root url exists on the default template; TODO: split out content into
-            // separate index page & 404 page
-            if (l.pathname !== '/' ) {
-                window.location = "{{ "/" | absolute_url }}"
-            }
-        }(window.location))
-    </script>
   </body>
 </html>

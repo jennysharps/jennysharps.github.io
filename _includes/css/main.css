@@ -188,8 +188,8 @@ section h3 {
     font-size: 1.75em;
 }
 
-section.tout {
-    background: #{{ site.color.section-tout }};
+section:nth-child(odd) {
+    background: #{{ site.color.section-alternate }};
 }
 
 @media(max-width:767px) {

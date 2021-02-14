@@ -1,0 +1,10 @@
+items:
+- id: about
+  title: About Me
+  content_include: "about_me.html"
+- id: skills
+  title: Skills
+  content_include: "skills.html"
+- id: contact
+  title: Contact
+  content_include: "contact_form.html"

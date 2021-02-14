@@ -24,14 +24,15 @@ function reinitializeOffset() {
 
 $(function() {
     $('.page-scroll a').bind('click', function(event) {
-        var $anchor = $(this);
+        var href = $(this).attr('href');
+        var hash = href.substring(href.indexOf("#"))
         // Fixing this on click of the menu item
         // where it is expected to work.
         reinitializeOffset();
         
         // actually scrolling to the position
         $('html, body').stop().animate({
-            scrollTop: $($anchor.attr('href')).offset().top - navbarOffset
+            scrollTop: $(hash).offset().top - navbarOffset
         }, 1500, 'easeInOutExpo');
         event.preventDefault();
     });

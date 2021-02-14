@@ -26,6 +26,8 @@ google_verify:
 # https://ssl.bing.com/webmaster/configure/verify/ownership Option 2 content= goes here
 bing_verify:
 
+recaptcha_site_key: 6LdkhVUaAAAAADK43DVHdjrf1D5IDhI65hekzf9q
+
 # Color settings (hex-codes without the leading hash-tag)
 color:
   primary: A585E6
@@ -33,7 +35,7 @@ color:
   primary-rgb: "142, 33, 243"
   secondary: 2C3547
   secondary-dark: 1B2436
-  section-tout: DEDBEC
+  section-alternate: DEDBEC
 
 github:
   - metadata
