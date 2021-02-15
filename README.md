@@ -4,7 +4,7 @@ This repo contains all of the configuration and source code needed for GitHub Pa
 
 ## Prerequisites
 
-1. Ruby; [`rbenv`](https://github.com/rbenv/rbenv#using-package-managers) can be used to managed local Ruby version
+1. Ruby; [`rbenv`](https://github.com/rbenv/rbenv#using-package-managers) can be used to manage local Ruby version
 1. [Bundler](https://bundler.io/)
 
 ## Local setup
