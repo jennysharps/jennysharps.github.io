@@ -4,6 +4,10 @@
  * For details, see http://www.apache.org/licenses/LICENSE-2.0.
  */
 
+ html {
+    overflow-y: scroll;
+}
+
 body {
     overflow-x: hidden;
     background: url({{ "img/old_wall.png" | absolute_url }});
